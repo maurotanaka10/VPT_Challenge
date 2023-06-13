@@ -54,7 +54,6 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         Vector3 cameraForward = Camera.main.transform.forward;
-        cameraForward.y = 0f;
     }
 
     private void OnMovementInput(InputAction.CallbackContext context)

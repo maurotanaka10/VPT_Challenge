@@ -361,6 +361,7 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/InputSystem/PlayerInputSystem.cs"
 "Assets/Scripts/Mouse/MouseController.cs"
+"Assets/Scripts/Player/ActionPlayerController.cs"
 "Assets/Scripts/Player/PlayerMovementController.cs"
 "Assets/Scripts/UI/TimerBehavior.cs"
 -langversion:9.0
