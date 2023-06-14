@@ -11,6 +11,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector2 playerMovementInput;
     private Vector3 playerMovement;
+    private bool isMoving;
     [SerializeField] private float playerVelocity;
 
     private void Awake()
@@ -31,12 +32,19 @@ public class PlayerMovementController : MonoBehaviour
     private void SetMovement()
     {
         transform.Translate(playerMovement * playerVelocity * Time.deltaTime);
+
+        if (isMoving)
+        {
+            transform.position = transform.position;
+        }
     }
 
     private void OnMovementInput(InputAction.CallbackContext context)
     {
         playerMovementInput = context.ReadValue<Vector2>();
         playerMovement = new Vector3(playerMovementInput.x, 0f, playerMovementInput.y);
+
+        isMoving = playerMovementInput.x != 0 || playerMovementInput.y != 0;
     }
 
     private void OnEnable()

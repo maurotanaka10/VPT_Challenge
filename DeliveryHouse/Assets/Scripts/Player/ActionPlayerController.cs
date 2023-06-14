@@ -7,7 +7,12 @@ public class ActionPlayerController : MonoBehaviour
 {
     private PlayerInputSystem playerInputSystem;
 
-    private bool itHasItem;
+    private bool getItens;
+    [SerializeField] private GameObject objHolding;
+    [SerializeField] private GameObject objAim;
+    [SerializeField] private bool isHolding;
+    [SerializeField] private Transform handTransform;
+    [SerializeField] private float maxDistanceRay;
 
     private void Awake()
     {
@@ -24,37 +29,75 @@ public class ActionPlayerController : MonoBehaviour
 
     private void PickingUpItens()
     {
-        if (itHasItem)
+        if (getItens)
         {
             RaycastHit hit;
             Vector3 screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
             Ray ray = Camera.main.ScreenPointToRay(screenCenter);
 
-            if(Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, maxDistanceRay))
             {
-                if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Item"))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Item"))
                 {
-                    //Acao de pegar item
-                    GameObject item = hit.collider.gameObject;
-                    Debug.Log("Peguei um item");
+                    if (!isHolding)
+                    {
+                        isHolding = true;
+                        objHolding = hit.transform.gameObject;
+                        if (objHolding.GetComponent<Rigidbody>())
+                        {
+                            objHolding.GetComponent<Rigidbody>().isKinematic = true;
+                            objHolding.transform.position = handTransform.transform.position;
+                            objHolding.transform.rotation = handTransform.transform.rotation;
+                            objHolding.transform.parent = handTransform.transform;
+                        }
+                    }
                 }
-                else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("DropZone"))
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("DropZone"))
                 {
-                    //Acao de soltar o item
-                    GameObject dropZone = hit.collider.gameObject;
-                    Debug.Log("estou mirando em um lugar para soltar");
+                    objAim = hit.transform.gameObject;
+                    Vector3 offset = new Vector3(0, 0.1f, 0);
+                    if (isHolding)
+                    {
+                        objHolding.GetComponent<Rigidbody>().isKinematic = true;
+                        objHolding.transform.position = objAim.transform.position + offset;
+                        objHolding.transform.rotation = objAim.transform.rotation;
+                        objHolding.transform.parent = objAim.transform;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
+                else if (hit.collider.gameObject.layer == 0)
+                {
+                    if (isHolding)
+                    {
+                        if (objHolding.GetComponent<Rigidbody>())
+                        {
+                            objHolding.GetComponent<Rigidbody>().isKinematic = true;
+                            objHolding.transform.position = handTransform.transform.position;
+                            objHolding.transform.rotation = handTransform.transform.rotation;
+                            objHolding.transform.parent = handTransform.transform;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (isHolding)
+            {
+                objHolding.transform.parent = null;
+                objHolding.GetComponent<Rigidbody>().isKinematic = false;
+                objHolding = null;
+                isHolding = false;
             }
         }
     }
 
     private void PickingUpItensInput(InputAction.CallbackContext context)
     {
-        itHasItem = context.ReadValueAsButton();
-        if (itHasItem)
-        {
-            Debug.Log("estou funcionado");
-        }
+        getItens = context.ReadValueAsButton();
     }
 
     private void OnEnable()
