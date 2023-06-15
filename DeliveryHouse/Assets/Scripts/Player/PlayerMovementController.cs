@@ -7,17 +7,18 @@ using Cinemachine;
 public class PlayerMovementController : MonoBehaviour
 {
     private PlayerInputSystem playerInputSystem;
-    private Rigidbody rigidBody;
+    private CharacterController characterController;
 
     private Vector2 playerMovementInput;
-    private Vector3 playerMovement;
+    private Vector3 playerMovementStrafe;
+    private Vector3 playerMovementForward;
     private bool isMoving;
     [SerializeField] private float playerVelocity;
 
     private void Awake()
     {
         playerInputSystem = new PlayerInputSystem();
-        rigidBody = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
 
         playerInputSystem.Player.Movement.started += OnMovementInput;
         playerInputSystem.Player.Movement.canceled += OnMovementInput;
@@ -31,20 +32,16 @@ public class PlayerMovementController : MonoBehaviour
 
     private void SetMovement()
     {
-        transform.Translate(playerMovement * playerVelocity * Time.deltaTime);
+        playerMovementForward = playerMovementInput.y * playerVelocity * transform.forward;
+        playerMovementStrafe = playerMovementInput.x * playerVelocity * transform.right;
 
-        if (isMoving)
-        {
-            transform.position = transform.position;
-        }
+        Vector3 finalMovement = playerMovementForward + playerMovementStrafe;
+        characterController.Move(finalMovement * Time.deltaTime);
     }
 
     private void OnMovementInput(InputAction.CallbackContext context)
     {
         playerMovementInput = context.ReadValue<Vector2>();
-        playerMovement = new Vector3(playerMovementInput.x, 0f, playerMovementInput.y);
-
-        isMoving = playerMovementInput.x != 0 || playerMovementInput.y != 0;
     }
 
     private void OnEnable()

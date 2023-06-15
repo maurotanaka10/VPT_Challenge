@@ -55,17 +55,13 @@ public class ActionPlayerController : MonoBehaviour
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("DropZone"))
                 {
                     objAim = hit.transform.gameObject;
-                    Vector3 offset = new Vector3(0, 0.1f, 0);
+                    Vector3 offset = new Vector3(0, 0.08f, 0);
                     if (isHolding)
                     {
                         objHolding.GetComponent<Rigidbody>().isKinematic = true;
                         objHolding.transform.position = objAim.transform.position + offset;
                         objHolding.transform.rotation = objAim.transform.rotation;
-                        objHolding.transform.parent = objAim.transform;
-                    }
-                    else
-                    {
-                        return;
+                        objHolding.transform.SetParent(objAim.transform);
                     }
                 }
                 else if (hit.collider.gameObject.layer == 0)
@@ -87,10 +83,17 @@ public class ActionPlayerController : MonoBehaviour
         {
             if (isHolding)
             {
+                Transform previourParent = objHolding.transform.parent;
                 objHolding.transform.parent = null;
+
                 objHolding.GetComponent<Rigidbody>().isKinematic = false;
                 objHolding = null;
                 isHolding = false;
+
+                if(previourParent != null)
+                {
+                    objHolding.transform.SetParent(previourParent);
+                }
             }
         }
     }
