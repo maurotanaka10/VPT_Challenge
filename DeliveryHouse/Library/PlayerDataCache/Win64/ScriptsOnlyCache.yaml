@@ -3,11 +3,15 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AllBurger
     - BurgerScriptableObject
-    - BurgerValidade
+    - BurgerValidate
+    - ButtonBehavior
     - CameraController
     - PlayerInteractController
     - PlayerMovementController
+    - RecipeImages
+    - SpawnIngredients
     - TimerBehavior
+    - UIManager
     Unity.InputSystem.dll:
     - UnityEngine.InputSystem.Editor.InputActionEditorWindow
     - UnityEngine.InputSystem.InputActionAsset
@@ -35,6 +39,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -55,17 +60,30 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Style
     - TMPro.VertexGradient
     UnityEngine.CoreModule:
+    - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
+    - UnityEngine.Events.PersistentListenerMode
     UnityEngine.TextCoreFontEngineModule:
     - UnityEngine.TextCore.FaceInfo
     - UnityEngine.TextCore.Glyph
     - UnityEngine.TextCore.GlyphMetrics
     - UnityEngine.TextCore.GlyphRect
     UnityEngine.UI:
+    - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.Button/ButtonClickedEvent
+    - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
-  methodsToPreserve: []
+    - UnityEngine.UI.Navigation
+    - UnityEngine.UI.SpriteState
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonBehavior
+    methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonBehavior
+    methodName: PlayGame
   sceneClasses:
-    Assets/Scenes/Demo_FreeKitchen.unity:
+    Assets/Scenes/Gameplay.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -84,8 +102,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
     - Class: 64
@@ -103,23 +119,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1600}
     - Class: 114
-      Script: {instanceID: 1960}
+      Script: {instanceID: 2808}
     - Class: 114
-      Script: {instanceID: 2310}
+      Script: {instanceID: 3050}
     - Class: 114
-      Script: {instanceID: 2810}
+      Script: {instanceID: 3228}
     - Class: 114
-      Script: {instanceID: 3052}
+      Script: {instanceID: 3752}
     - Class: 114
-      Script: {instanceID: 3230}
+      Script: {instanceID: 3954}
     - Class: 114
-      Script: {instanceID: 3956}
+      Script: {instanceID: 4592}
     - Class: 114
-      Script: {instanceID: 4594}
-    - Class: 114
-      Script: {instanceID: 4638}
-    - Class: 114
-      Script: {instanceID: 4954}
+      Script: {instanceID: 5452}
     - Class: 114
       Script: {instanceID: 5826}
     - Class: 114
@@ -133,14 +145,81 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7100}
     - Class: 114
+      Script: {instanceID: 7646}
+    - Class: 114
       Script: {instanceID: 8330}
     - Class: 114
-      Script: {instanceID: 24516}
+      Script: {instanceID: 27074}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 143
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Menu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1600}
+    - Class: 114
+      Script: {instanceID: 2308}
+    - Class: 114
+      Script: {instanceID: 2808}
+    - Class: 114
+      Script: {instanceID: 3050}
+    - Class: 114
+      Script: {instanceID: 3394}
+    - Class: 114
+      Script: {instanceID: 3752}
+    - Class: 114
+      Script: {instanceID: 4636}
+    - Class: 114
+      Script: {instanceID: 4952}
+    - Class: 114
+      Script: {instanceID: 5826}
+    - Class: 114
+      Script: {instanceID: 6514}
+    - Class: 114
+      Script: {instanceID: 6712}
+    - Class: 114
+      Script: {instanceID: 6980}
+    - Class: 114
+      Script: {instanceID: 7100}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -251,12 +330,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: 
     className: CinemachineCameraOffset
-  - hash:
-      serializedVersion: 2
-      Hash: 47cc85bc4223bff53ecf8d85d527ee06
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BurgerValidade
   - hash:
       serializedVersion: 2
       Hash: 6225eb0973ab0af667bc5f9d1b1b18de
@@ -553,7 +626,7 @@ ScriptsOnlyBuild:
     className: UnityOnSelectMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: eeae7e93671e4679b889a28281bd4601
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -715,7 +788,7 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: a13a08e4dbcc7a6f0f85f0e522b05a2a
+      Hash: c4b4d65115b844d492eceaf9322daddc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerInteractController
@@ -865,6 +938,12 @@ ScriptsOnlyBuild:
     className: CinemachineBlendListCamera
   - hash:
       serializedVersion: 2
+      Hash: c5d825e33911cf32531d02af3356304b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpawnIngredients
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -979,7 +1058,7 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
-      Hash: fb32c38d03aa4d13fc351c9b3fa033c6
+      Hash: 16d12ac4fd42216e985a6e4a960a7143
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TimerBehavior
@@ -1039,7 +1118,7 @@ ScriptsOnlyBuild:
     className: CinemachineSameAsFollowTarget
   - hash:
       serializedVersion: 2
-      Hash: 6f0bcbdff278c2f5c03e08b53c60f59b
+      Hash: ce077365dcdfa83f1c5eb0dadb990eb9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BurgerScriptableObject
@@ -1082,15 +1161,15 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: DishController
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseUpAsButtonMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ButtonBehavior
   - hash:
       serializedVersion: 2
       Hash: 08949c1402f3d104c5c61c57f6561089
@@ -1213,6 +1292,12 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
+      Hash: d8ec350776a643576279d933e6d15fc0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BurgerValidate
+  - hash:
+      serializedVersion: 2
       Hash: d227987243593b32ae57394d06018643
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -1301,12 +1386,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSubmitMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GrillController
   - hash:
       serializedVersion: 2
       Hash: a81d4c2c1cf3ad164d277d927a193679
@@ -1475,7 +1554,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: ed04629b6ad39d7dd4a99cde54d2cd05
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RecipeImages
   platform: 19
   scenePathNames:
-  - Assets/Scenes/Demo_FreeKitchen.unity
+  - Assets/Scenes/Menu.unity
+  - Assets/Scenes/Gameplay.unity
   playerPath: E:/Git/Projetos/VPT_Challenge/DeliveryHouse/Build/VPT_Challenge.exe

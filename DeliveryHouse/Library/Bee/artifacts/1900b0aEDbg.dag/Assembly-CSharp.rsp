@@ -372,6 +372,7 @@
 "Assets/Scripts/Player/PlayerInteractController.cs"
 "Assets/Scripts/Player/PlayerMovementController.cs"
 "Assets/Scripts/UI/ButtonBehavior.cs"
+"Assets/Scripts/UI/RecipeImages.cs"
 "Assets/Scripts/UI/TimerBehavior.cs"
 -langversion:9.0
 

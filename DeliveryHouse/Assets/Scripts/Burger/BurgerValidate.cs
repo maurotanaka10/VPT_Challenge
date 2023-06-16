@@ -6,6 +6,7 @@ public class BurgerValidate : MonoBehaviour
 {
     public AllBurger allBurger;
     public UIManager uIManager;
+    [SerializeField] private RecipeImages recipeImages;
 
     public BurgerScriptableObject burgerSelected;
 
@@ -13,10 +14,12 @@ public class BurgerValidate : MonoBehaviour
 
     private void Awake()
     {
+
         RandomizeBurger();
         Debug.Log(burgerSelected.GetBurgerName());
         Debug.Log(burgerSelected.ingredient01 + "" + burgerSelected.ingredient02 + "" + burgerSelected.ingredient03 + "" + burgerSelected.ingredient04 + "" + burgerSelected.ingredient05);
     }
+
     public void RandomizeBurger()
     {
         burgerSelected = allBurger.GetRandomBurger();
@@ -79,6 +82,9 @@ public class BurgerValidate : MonoBehaviour
         {
             Destroy(ingredients);
         }
+
+        RandomizeBurger();
+        recipeImages.UpdateIngredientImage();
     }
 
     private void WrongRequest()
