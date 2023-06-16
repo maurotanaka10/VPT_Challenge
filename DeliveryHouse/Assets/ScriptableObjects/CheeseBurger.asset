@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4c017736ae3cd42baab4167ac35703, type: 3}
   m_Name: CheeseBurger
   m_EditorClassIdentifier: 
-  nameBurger: c
+  nameBurger: Cheese Burger
   iconBurger: {fileID: 21300000, guid: d24e7e0b75e1a244bb9687d6fd4315ef, type: 3}
-  ingredient01: 0
-  ingredient02: 0
-  ingredient03: 0
+  ingredient01: 7
+  ingredient02: 1
+  ingredient03: 5
+  ingredient04: 4
+  ingredient05: 8
+  payment: 50

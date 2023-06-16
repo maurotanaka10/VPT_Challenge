@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 74065671225657922}
   - component: {fileID: 3395575991027317290}
   - component: {fileID: 1270912495991235358}
-  - component: {fileID: 743836532627355962}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrilledMeat
-  m_TagString: Item
+  m_TagString: Meat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6684818789649502528}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.03158, y: 0.018252403, z: -0.02316}
-  m_LocalScale: {x: 1, y: 0.10793627, z: 1}
+  m_LocalScale: {x: 5.7641, y: 0.6221555, z: 5.7641}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -116,15 +115,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4961871770362513727, guid: 6810374824a90ec4a812270caef00981, type: 3}
---- !u!114 &743836532627355962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6684818789649502528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61ae84b8465b3b49a9ec5b2ea4a4f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

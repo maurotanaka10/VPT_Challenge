@@ -7,20 +7,29 @@ public class BurgerScriptableObject : ScriptableObject
 {
     [SerializeField] private string nameBurger;
     [SerializeField] private Sprite iconBurger;
-    [SerializeField] private Ingredients ingredient01, ingredient02, ingredient03;
+    public Ingredients ingredient01, ingredient02, ingredient03, ingredient04, ingredient05;
+    public float payment;
 
     public string GetBurgerName()
     {
         return nameBurger;
     }
+
+    public Ingredients[] GetBurgerIngredients()
+    {
+        return new Ingredients[] { ingredient01, ingredient02, ingredient03, ingredient04, ingredient05 };
+    }
 }
 
 public enum Ingredients
 {
+    Null,
     Meat,
     Salad,
     Tomato,
     Onion,
     Cheese,
-    Pickles
+    Pickles,
+    BreadTop,
+    BreadDown
 }

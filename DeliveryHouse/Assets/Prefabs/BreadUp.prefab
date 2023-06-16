@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 8926141069100724360}
   - component: {fileID: 8379667506863913431}
   - component: {fileID: 4931175578775734693}
-  - component: {fileID: -7479787334078761454}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BreadUp
-  m_TagString: Item
+  m_TagString: BreadTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4344187736789937370}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0338, y: 0.022543626, z: 0.0001}
-  m_LocalScale: {x: 2.6751645, y: 1.5936648, z: 2.6751645}
+  m_LocalScale: {x: 13.788185, y: 8.213978, z: 13.788184}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -116,15 +115,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8808762769346721982, guid: 6810374824a90ec4a812270caef00981, type: 3}
---- !u!114 &-7479787334078761454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4344187736789937370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61ae84b8465b3b49a9ec5b2ea4a4f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

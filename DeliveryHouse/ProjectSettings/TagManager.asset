@@ -6,7 +6,15 @@ TagManager:
   tags:
   - Item
   - Dish
-  - Pan
+  - Bread
+  - Cheese
+  - Meat
+  - Tomato
+  - Pickles
+  - Onion
+  - Salad
+  - BreadTop
+  - BreadDown
   layers:
   - Default
   - TransparentFX

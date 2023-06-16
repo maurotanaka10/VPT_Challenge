@@ -6,14 +6,9 @@ using TMPro;
 public class TimerBehavior : MonoBehaviour
 {
     [SerializeField] private TMP_Text timerText;
-    [SerializeField] private float timerToDelivery;
+    [SerializeField] private float timer;
     private bool timerIsRunning = false;
     private float currentTime;
-    [SerializeField] private GameObject penaltyText;
-    [SerializeField] private float penaltyTime;
-
-    public bool gameIsOver;
-
 
     private void Awake()
     {
@@ -52,12 +47,7 @@ public class TimerBehavior : MonoBehaviour
 
     public void ResetTimer()
     {
-        currentTime = timerToDelivery;
-        timerText.text = timerToDelivery.ToString("0");
-    }
-
-    public void Penalty()
-    {
-        currentTime -= penaltyTime;
+        currentTime = timer;
+        timerText.text = timer.ToString("0");
     }
 }

@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 2237572232253748124}
   - component: {fileID: 5946212502091144283}
   - component: {fileID: -7281462992758055185}
-  - component: {fileID: 4171826809323094198}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pickles
-  m_TagString: Item
+  m_TagString: Pickles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948887161081864974}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0025582754, y: 0.0009720683, z: -0.03755}
-  m_LocalScale: {x: 0.2269215, y: 0.035993177, z: 0.2269215}
+  m_LocalScale: {x: 1.7913864, y: 0.28414094, z: 1.7913864}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,15 +116,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 9122478642106969565, guid: 6810374824a90ec4a812270caef00981, type: 3}
---- !u!114 &4171826809323094198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948887161081864974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61ae84b8465b3b49a9ec5b2ea4a4f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
