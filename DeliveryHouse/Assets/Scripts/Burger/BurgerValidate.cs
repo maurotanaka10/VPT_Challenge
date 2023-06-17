@@ -38,18 +38,33 @@ public class BurgerValidate : MonoBehaviour
         if (IngredientsOnPlate.Count == BurgerSelected.GetBurgerIngredients().Length)
         {
             bool isComplete = true;
+            Ingredients[] burgerIngredients = BurgerSelected.GetBurgerIngredients();
 
-            foreach (GameObject ingredient in IngredientsOnPlate)
+            foreach (Ingredients ingredientType in burgerIngredients)
             {
-                if (!IsIngredientInBurguer(ingredient))
+                bool foundIngredient = false;
+
+                foreach (GameObject ingredient in IngredientsOnPlate)
+                {
+                    if (ingredient.CompareTag(ingredientType.ToString()))
+                    {
+                        foundIngredient = true;
+                        break;
+                    }
+                }
+
+                if (!foundIngredient)
                 {
                     isComplete = false;
+                    Debug.Log("Ingrediente Errado");
+                    WrongRequest();
                     break;
                 }
             }
+
             if (isComplete)
             {
-                Debug.Log("burger feito");
+                Debug.Log("Burger completo");
                 ConclusionRequest();
             }
         }
@@ -66,10 +81,9 @@ public class BurgerValidate : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log("Ingrediente Errado");
-        WrongRequest();
         return false;
     }
+
 
     public void FirstRequest()
     {

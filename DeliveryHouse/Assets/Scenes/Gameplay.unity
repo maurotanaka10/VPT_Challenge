@@ -4571,7 +4571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6684818789649502528, guid: 66c719d900de6cc4a84ab2fac9638121, type: 3}
       propertyPath: m_Name
-      value: GrilledMeat
+      value: Meat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66c719d900de6cc4a84ab2fac9638121, type: 3}
