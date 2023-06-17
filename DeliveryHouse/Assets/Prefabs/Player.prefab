@@ -298,6 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a432d73a0588a46a29c25e8d6b73c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 3276141424989288748}
-  sensitivity: 2
-  smoothing: 1.5
+  _playerTransform: {fileID: 3276141424989288748}
+  _sensitivity: 2
+  _smoothing: 1.5

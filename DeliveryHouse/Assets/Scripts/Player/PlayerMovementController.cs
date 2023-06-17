@@ -6,9 +6,9 @@ using Cinemachine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    private PlayerInputSystem playerInputSystem;
-    private CharacterController characterController;
-    public GameManager gameManager;
+    private PlayerInputSystem _playerInputSystem;
+    private CharacterController _characterController;
+    [SerializeField] private GameManager _gameManager;
 
     private Vector2 playerMovementInput;
     private Vector3 playerMovementStrafe;
@@ -18,17 +18,17 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Awake()
     {
-        playerInputSystem = new PlayerInputSystem();
-        characterController = GetComponent<CharacterController>();
+        _playerInputSystem = new PlayerInputSystem();
+        _characterController = GetComponent<CharacterController>();
 
-        playerInputSystem.Player.Movement.started += OnMovementInput;
-        playerInputSystem.Player.Movement.canceled += OnMovementInput;
-        playerInputSystem.Player.Movement.performed += OnMovementInput;
+        _playerInputSystem.Player.Movement.started += OnMovementInput;
+        _playerInputSystem.Player.Movement.canceled += OnMovementInput;
+        _playerInputSystem.Player.Movement.performed += OnMovementInput;
     }
 
     private void FixedUpdate()
     {
-        if (gameManager.gameIsRunning)
+        if (_gameManager.GameIsRunning)
         {
             SetMovement();
         }
@@ -40,7 +40,7 @@ public class PlayerMovementController : MonoBehaviour
         playerMovementStrafe = playerMovementInput.x * playerVelocity * transform.right;
 
         Vector3 finalMovement = playerMovementForward + playerMovementStrafe;
-        characterController.Move(finalMovement * Time.deltaTime);
+        _characterController.Move(finalMovement * Time.deltaTime);
     }
 
     private void OnMovementInput(InputAction.CallbackContext context)
@@ -50,11 +50,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInputSystem.Player.Enable();
+        _playerInputSystem.Player.Enable();
     }
 
     private void OnDisable()
     {
-        playerInputSystem.Player.Disable();
+        _playerInputSystem.Player.Disable();
     }
 }

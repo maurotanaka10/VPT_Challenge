@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpawnIngredients : MonoBehaviour
 {
-    [SerializeField] private GameObject ingredient;
-    [SerializeField] private Transform dishTransform;
+    [SerializeField] private GameObject _ingredient;
+    [SerializeField] private Transform _dishTransform;
 
     private void OnCollisionExit(Collision collision)
     {
@@ -14,35 +14,35 @@ public class SpawnIngredients : MonoBehaviour
 
         if (collision.gameObject.tag == "BreadTop")
         {
-            Instantiate(ingredient, dishTransform);
+            Instantiate(_ingredient, _dishTransform);
         }
         else if(collision.gameObject.tag == "Tomato")
         {
-            Instantiate(ingredient, dishTransform);
+            Instantiate(_ingredient, _dishTransform);
         }
         else if (collision.gameObject.tag == "Onion")
         {
-            Instantiate(ingredient, dishTransform);
+            Instantiate(_ingredient, _dishTransform);
         }
         else if (collision.gameObject.tag == "Pickles")
         {
-            Instantiate(ingredient, dishTransform);
+            Instantiate(_ingredient, _dishTransform);
         }
         else if (collision.gameObject.tag == "Salad")
         {
-            Instantiate(ingredient, dishTransform);
+            Instantiate(_ingredient, _dishTransform);
         }
         else if (collision.gameObject.tag == "Meat")
         {
-            Instantiate(ingredient, dishTransform);
+            Instantiate(_ingredient, _dishTransform);
         }
         else if (collision.gameObject.tag == "Cheese")
         {
-            Instantiate(ingredient, dishTransform);
+            Instantiate(_ingredient, _dishTransform);
         }
         else if (collision.gameObject.tag == "BreadDown")
         {
-            Instantiate(ingredient, dishTransform);
+            Instantiate(_ingredient, _dishTransform);
         }
     }
 }

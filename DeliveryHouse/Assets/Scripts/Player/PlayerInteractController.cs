@@ -5,23 +5,25 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteractController : MonoBehaviour
 {
-    private PlayerInputSystem playerInputSystem;
-    [SerializeField]private BurgerValidate burgerValidate;
-    public CleanDish cleanDish;
+    private PlayerInputSystem _playerInputSystem;
+    [SerializeField] private BurgerValidate _burgerValidate;
+    [SerializeField] private CleanDish _cleanDish;
+    [SerializeField] private AudioController _audioController;
 
-    private bool mouseClicked;
-    [SerializeField] private GameObject objHolding;
-    [SerializeField] private GameObject objAim;
-    [SerializeField] private float maxDistanceRay;
-    [SerializeField] private Transform handTransform;
-    private bool isHolding;
+    private bool _mouseClicked;
+    private GameObject _objHolding;
+    private GameObject _objAim;
+    [SerializeField] private float _maxDistanceRay;
+    [SerializeField] private Transform _handTransform;
+    private bool _isHolding;
+    private Vector3 offset;
 
     private void Awake()
     {
-        playerInputSystem = new PlayerInputSystem();
+        _playerInputSystem = new PlayerInputSystem();
 
-        playerInputSystem.Player.MouseClick.started += PickingUpItensInput;
-        playerInputSystem.Player.MouseClick.canceled += PickingUpItensInput;
+        _playerInputSystem.Player.MouseClick.started += PickingUpItensInput;
+        _playerInputSystem.Player.MouseClick.canceled += PickingUpItensInput;
     }
 
     private void InteractingItens()
@@ -29,82 +31,98 @@ public class PlayerInteractController : MonoBehaviour
         RaycastHit[] hits;
         Vector3 screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
-        hits = Physics.RaycastAll(ray, maxDistanceRay, LayerMask.GetMask("Interactable"));
+        hits = Physics.RaycastAll(ray, _maxDistanceRay, LayerMask.GetMask("Interactable"));
 
         foreach (var hit in hits)
         {
-            if (mouseClicked)
+            if (_mouseClicked)
             {
-                if (!isHolding)
+                if (!_isHolding)
                 {
                     if (hit.collider.gameObject.tag == "Button")
                     {
-                        burgerValidate.ingredientsOnPlate.Clear();
-                        cleanDish.CleanDishAfterRecipe();
-                        return;
+                        _burgerValidate.IngredientsOnPlate.Clear();
+                        _cleanDish.CleanDishAfterRecipe();
+                        break;
                     }
 
                     if (hit.collider.gameObject.tag == ("Dish"))
                     {
-                        return;
+                        continue;
                     }
 
-                    isHolding = true;
-                    objHolding = hit.transform.gameObject;
-                    cleanDish.AddItensToDestroy(objHolding);
-                    if (objHolding.GetComponent<Rigidbody>())
+                    _isHolding = true;
+                    _objHolding = hit.transform.gameObject;
+                    _cleanDish.AddItensToDestroy(_objHolding);
+                    _audioController.CatchSomethingSound();
+                    if (_objHolding.GetComponent<Rigidbody>())
                     {
-                        objHolding.GetComponent<Rigidbody>().isKinematic = true;
-                        objHolding.transform.position = handTransform.transform.position;
-                        objHolding.transform.rotation = handTransform.transform.rotation;
-                        objHolding.transform.parent = handTransform.transform;
+                        _objHolding.GetComponent<Rigidbody>().isKinematic = true;
+                        _objHolding.transform.position = _handTransform.transform.position;
+                        _objHolding.transform.rotation = _handTransform.transform.rotation;
+                        _objHolding.transform.parent = _handTransform.transform;
                     }
                     break;
                 }
+
             }
             else
             {
-                if (!objHolding)
+                if (!_isHolding)
                     return;
 
                 if (hit.collider.gameObject.tag == ("Dish"))
                 {
-                    objAim = hit.transform.gameObject;
-                    Vector3 offset = new Vector3(0, 0.08f, 0);
-                    if (isHolding)
+                    DishController dishController = hit.collider.gameObject.GetComponent<DishController>();
+                    Vector3 offset = new Vector3(0, 0, 0);
+
+                    if (dishController.lastItem == null)
                     {
-                        objHolding.GetComponent<Rigidbody>().isKinematic = true;
-                        objHolding.transform.position = objAim.transform.position + offset;
-                        objHolding.transform.rotation = objAim.transform.rotation;
-                        objHolding.transform.SetParent(objAim.transform);
-
-                        burgerValidate.AddIngredientsToPlate(objHolding);
+                        _objAim = hit.transform.gameObject;
+                        offset = new Vector3(0, 0.02f, 0);
                     }
+                    else
+                    {
+                        _objAim = dishController.lastItem;
+                        offset = new Vector3(0, 0.01f, 0);
+                    }
+
+                    
+                    _objHolding.GetComponent<Rigidbody>().isKinematic = true;
+                    _objHolding.transform.position = _objAim.transform.position + offset;
+                    _objHolding.transform.rotation = _objAim.transform.rotation;
+                    _objHolding.transform.SetParent(_objAim.transform);
+                    _burgerValidate.AddIngredientsToPlate(_objHolding);
+                    dishController.lastItem = _objHolding;
+                    _isHolding = false;
+                    _objHolding = null;
+                    break;
                 }
-
-                objHolding.transform.parent = null;
-                objHolding.GetComponent<Rigidbody>().isKinematic = false;
-                objHolding = null;
-                isHolding = false;
-
-                break;
             }
+        }
+
+        if (_isHolding && !_mouseClicked)
+        {
+            _objHolding.transform.parent = null;
+            _objHolding.GetComponent<Rigidbody>().isKinematic = false;
+            _objHolding = null;
+            _isHolding = false;
         }
     }
 
     private void PickingUpItensInput(InputAction.CallbackContext context)
     {
-        mouseClicked = context.ReadValueAsButton();
+        _mouseClicked = context.ReadValueAsButton();
 
         InteractingItens();
     }
 
     private void OnEnable()
     {
-        playerInputSystem.Player.Enable();
+        _playerInputSystem.Player.Enable();
     }
     private void OnDisable()
     {
-        playerInputSystem.Player.Disable();
+        _playerInputSystem.Player.Disable();
     }
 }

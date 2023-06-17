@@ -4,30 +4,39 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
-    [SerializeField] private AudioClip moneyClip, wrongClip;
+    [SerializeField] private AudioClip _moneyClip, _wrongClip, _catchClip;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void CorrectRecipeSound()
     {
-        if (!audioSource.isPlaying)
+        if (!_audioSource.isPlaying)
         {
-            audioSource.clip = moneyClip;
-            audioSource.Play();
+            _audioSource.clip = _moneyClip;
+            _audioSource.Play();
         }
     }
 
     public void WrongRecipeSound()
     {
-        if (!audioSource.isPlaying)
+        if (!_audioSource.isPlaying)
         {
-            audioSource.clip = wrongClip;
-            audioSource.Play();
+            _audioSource.clip = _wrongClip;
+            _audioSource.Play();
+        }
+    }
+
+    public void CatchSomethingSound()
+    {
+        if (!_audioSource.isPlaying)
+        {
+            _audioSource.clip = _catchClip;
+            _audioSource.Play();
         }
     }
 }

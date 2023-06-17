@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c40a828339ff0a4994dd560afc5633d, type: 3}
   m_Name: All Burgers
   m_EditorClassIdentifier: 
-  burgerGroup:
+  _burgerGroup:
   - {fileID: 11400000, guid: 5fd9a8f8f144eb74bb8626a848e279c4, type: 2}
-  - {fileID: 11400000, guid: 9f6eb036f11040744baca04922243f94, type: 2}
-  - {fileID: 11400000, guid: 4572a85ffd21b37499514a2e9423734c, type: 2}
   - {fileID: 11400000, guid: 56fca71d8a96ee5468352995255f0b20, type: 2}
+  - {fileID: 11400000, guid: 4572a85ffd21b37499514a2e9423734c, type: 2}
+  - {fileID: 11400000, guid: 9f6eb036f11040744baca04922243f94, type: 2}

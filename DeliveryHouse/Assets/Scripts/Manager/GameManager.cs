@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public BurgerValidate burgerValidate;
-    public TimerBehavior timerBehavior;
-    public UIManager uIManager;
+    [SerializeField] private BurgerValidate _burgerValidate;
 
-    public bool gameIsRunning = false;
-    public bool gameIsOver = false;
+    public bool GameIsRunning = false;
+    public bool GameIsOver = false;
 
     private void Awake()
     {
@@ -18,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        burgerValidate.FirstRequest();
+        _burgerValidate.FirstRequest();
         Cursor.lockState = CursorLockMode.Locked;
     }
 }

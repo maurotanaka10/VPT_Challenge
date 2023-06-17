@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerMovementController playerMovementController;
-    private CameraController cameraController;
-    private PlayerInputSystem playerInputSystem;
+    private PlayerMovementController _playerMovementController;
+    private CameraController _cameraController;
+    private PlayerInputSystem _playerInputSystem;
 
     private void Awake()
     {
-        playerMovementController = GetComponent<PlayerMovementController>();
-        cameraController = GetComponent<CameraController>();
-        playerInputSystem = new PlayerInputSystem();
+        _playerMovementController = GetComponent<PlayerMovementController>();
+        _cameraController = GetComponent<CameraController>();
+        _playerInputSystem = new PlayerInputSystem();
     }
 
     private void Update()
@@ -22,11 +22,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInputSystem.Player.Enable();
+        _playerInputSystem.Player.Enable();
     }
 
     private void OnDisable()
     {
-        playerInputSystem.Player.Disable();
+        _playerInputSystem.Player.Disable();
     }
 }

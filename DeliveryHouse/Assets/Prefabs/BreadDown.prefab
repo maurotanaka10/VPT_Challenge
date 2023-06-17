@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2523561198194378064}
   - component: {fileID: -7992400865632015086}
   - component: {fileID: 3965585885203173500}
-  - component: {fileID: -8236727837948853808}
   m_Layer: 6
   m_Name: BreadDown
   m_TagString: BreadDown
@@ -116,15 +115,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 591789481676293120, guid: 6810374824a90ec4a812270caef00981, type: 3}
---- !u!114 &-8236727837948853808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4824853725920898096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21cfba67a5dbb9448270a817cd2d577, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -5,81 +5,75 @@ using TMPro;
 
 public class TimerBehavior : MonoBehaviour
 {
-    public GameManager gameManager;
+    [SerializeField] private GameManager _gameManager;
 
-    [SerializeField] private TMP_Text timerText;
-    [SerializeField] private TMP_Text startGameTxt;
-    [SerializeField] private GameObject startGameTxt2;
-    [SerializeField] private float initialTimer;
-    [SerializeField] private float gameTimer;
-    private float timer;
-    private bool timerIsRunning = false;
-    private float currentTime;
+    [SerializeField] private TMP_Text _timerText;
+    [SerializeField] private TMP_Text _startGameTxt;
+    [SerializeField] private GameObject _startGameTxt2;
+    [SerializeField] private float _initialTimer;
+    [SerializeField] private float _gameTimer;
+    private float _timer;
+    private bool _timerIsRunning = false;
+    private float _currentTime;
 
     private void Awake()
     {
-        StartTimer();
+        StartGameTimer();
     }
 
     private void FixedUpdate()
     {
-        if (timerIsRunning)
+        if (_timerIsRunning)
         {
-            currentTime -= Time.deltaTime;
+            _currentTime -= Time.deltaTime;
 
-            string minutes = ((int)currentTime / 60).ToString("00");
-            string seconds = (currentTime % 60).ToString("00");
+            string minutes = ((int)_currentTime / 60).ToString("00");
+            string seconds = (_currentTime % 60).ToString("00");
             string timeText = minutes + ":" + seconds;
 
-            if (gameManager.gameIsRunning)
+            if (_gameManager.GameIsRunning)
             {
-                timerText.text = timeText;
+                _timerText.text = timeText;
 
-                if (currentTime <= 0f)
+                if (_currentTime <= 0f)
                 {
-                    currentTime = 0f;
+                    _currentTime = 0f;
                     StopTimer();
-                    gameManager.gameIsOver = true;
-                    gameManager.gameIsRunning = false;
+                    _gameManager.GameIsOver = true;
+                    _gameManager.GameIsRunning = false;
                 }
             }
             else
             {
-                startGameTxt.text = timeText;
+                _startGameTxt.text = timeText;
 
-                if(currentTime <= 0)
+                if(_currentTime <= 0)
                 {
-                    gameManager.StartGame();
+                    _gameManager.StartGame();
                     ResetTimer();
-                    startGameTxt2.SetActive(false);
-                    gameManager.gameIsRunning = true;
+                    _startGameTxt2.SetActive(false);
+                    _gameManager.GameIsRunning = true;
                 }
             }
         }
     }
-
-    public void StartTimer()
-    {
-        timerIsRunning = true;
-        StartGameTimer();
-    }
-
     private void StopTimer()
     {
-        timerIsRunning = false;
+        _timerIsRunning = false;
     }
 
     private void ResetTimer()
     {
-        timer = gameTimer;
-        currentTime = timer;
-        timerText.text = timer.ToString("0");
+        _timer = _gameTimer;
+        _currentTime = _timer;
+        _timerText.text = _timer.ToString("0");
     }
 
     private void StartGameTimer()
     {
-        timer = initialTimer;
-        currentTime = timer;
-        startGameTxt.text = timer.ToString("0");
+        _timerIsRunning = true;
+        _timer = _initialTimer;
+        _currentTime = _timer;
+        _startGameTxt.text = _timer.ToString("0");
     }
 }

@@ -20,4 +20,9 @@ public class ButtonBehavior: MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void StartCutscene()
+    {
+        SceneManager.LoadScene("Cutscene");
+    }
 }

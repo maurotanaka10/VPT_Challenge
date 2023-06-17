@@ -5,12 +5,12 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public GameManager gameManager;
+    [SerializeField] private GameManager _gameManager;
 
-    public float money;
-    [SerializeField] private TMP_Text moneyText;
-    [SerializeField] private GameObject finishHud;
-    [SerializeField] private TMP_Text finalMoneyTxt;
+    public float Money;
+    [SerializeField] private TMP_Text _moneyText;
+    [SerializeField] private GameObject _finishHud;
+    [SerializeField] private TMP_Text _finalMoneyTxt;
 
     private void Awake()
     {
@@ -19,17 +19,17 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        moneyText.text = money.ToString();
+        _moneyText.text = Money.ToString();
 
         FinishGameHud();
     }
 
     private void FinishGameHud()
     {
-        if (gameManager.gameIsOver)
+        if (_gameManager.GameIsOver)
         {
-            finishHud.SetActive(true);
-            finalMoneyTxt.text = money.ToString();
+            _finishHud.SetActive(true);
+            _finalMoneyTxt.text = Money.ToString();
             Cursor.lockState = CursorLockMode.None;
         }
     }

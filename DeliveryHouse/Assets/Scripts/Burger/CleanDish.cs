@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class CleanDish : MonoBehaviour
 {
-    private List<GameObject> itensToDestroy = new List<GameObject>();
+    private List<GameObject> _itensToDestroy = new List<GameObject>();
 
 
     public void AddItensToDestroy(GameObject itens)
     {
-        itensToDestroy.Add(itens);
+        _itensToDestroy.Add(itens);
     }
     public void CleanDishAfterRecipe()
     {
-        foreach (GameObject item in itensToDestroy)
+        foreach (GameObject item in _itensToDestroy)
         {
             Destroy(item);
         }
 
-        itensToDestroy.Clear();
+        _itensToDestroy.Clear();
     }
 }

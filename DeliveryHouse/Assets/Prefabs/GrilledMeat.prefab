@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 74065671225657922}
   - component: {fileID: 3395575991027317290}
   - component: {fileID: 1270912495991235358}
-  - component: {fileID: -2954999774739645998}
   m_Layer: 6
   m_Name: GrilledMeat
   m_TagString: Meat
@@ -116,15 +115,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4961871770362513727, guid: 6810374824a90ec4a812270caef00981, type: 3}
---- !u!114 &-2954999774739645998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6684818789649502528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21cfba67a5dbb9448270a817cd2d577, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class BurgerValidate : MonoBehaviour
 {
-    public AllBurger allBurger;
-    public UIManager uIManager;
-    public AudioController audioController;
-    public CleanDish cleanDish;
-    [SerializeField] private RecipeImages recipeImages;
+    [SerializeField] private AllBurger _allBurger;
+    [SerializeField] private UIManager _uIManager;
+    [SerializeField] private AudioController _audioController;
+    [SerializeField] private CleanDish _cleanDish;
+    [SerializeField] private RecipeImages _recipeImages;
+    [SerializeField] private DishController _dishController;
 
-    [SerializeField] private float lostMoney;
+    [SerializeField] private float _lostMoney;
 
-    public BurgerScriptableObject burgerSelected;
+    public BurgerScriptableObject BurgerSelected;
 
-    public List<GameObject> ingredientsOnPlate = new List<GameObject>();
+    public List<GameObject> IngredientsOnPlate = new List<GameObject>();
 
     private void Awake()
     {
@@ -23,22 +24,22 @@ public class BurgerValidate : MonoBehaviour
 
     public void RandomizeBurger()
     {
-        burgerSelected = allBurger.GetRandomBurger();
+        BurgerSelected = _allBurger.GetRandomBurger();
     }
 
     public void AddIngredientsToPlate(GameObject ingredients)
     {
-        ingredientsOnPlate.Add(ingredients);
+        IngredientsOnPlate.Add(ingredients);
         CheckBurgerCompletion();
     }
 
     private void CheckBurgerCompletion()
     {
-        if (ingredientsOnPlate.Count == burgerSelected.GetBurgerIngredients().Length)
+        if (IngredientsOnPlate.Count == BurgerSelected.GetBurgerIngredients().Length)
         {
             bool isComplete = true;
 
-            foreach (GameObject ingredient in ingredientsOnPlate)
+            foreach (GameObject ingredient in IngredientsOnPlate)
             {
                 if (!IsIngredientInBurguer(ingredient))
                 {
@@ -56,7 +57,7 @@ public class BurgerValidate : MonoBehaviour
 
     private bool IsIngredientInBurguer(GameObject ingredient)
     {
-        Ingredients[] burgerIngredients = burgerSelected.GetBurgerIngredients();
+        Ingredients[] burgerIngredients = BurgerSelected.GetBurgerIngredients();
 
         foreach (Ingredients ingredientType in burgerIngredients)
         {
@@ -73,27 +74,29 @@ public class BurgerValidate : MonoBehaviour
     public void FirstRequest()
     {
         RandomizeBurger();
-        recipeImages.UpdateIngredientImage();
+        _recipeImages.UpdateIngredientImage();
     }
 
     private void ConclusionRequest()
     {
-        uIManager.money += burgerSelected.payment;
-        ingredientsOnPlate.Clear();
-        cleanDish.CleanDishAfterRecipe();
-        audioController.CorrectRecipeSound();
+        _dishController.lastItem = null;
+        _uIManager.Money += BurgerSelected.payment;
+        IngredientsOnPlate.Clear();
+        _cleanDish.CleanDishAfterRecipe();
+        _audioController.CorrectRecipeSound();
 
         RandomizeBurger();
-        recipeImages.UpdateIngredientImage();
+        _recipeImages.UpdateIngredientImage();
     }
 
     private void WrongRequest()
     {
-        uIManager.money -= lostMoney;
-        cleanDish.CleanDishAfterRecipe();
-        audioController.WrongRecipeSound();
+        _dishController.lastItem = null;
+        _uIManager.Money -= _lostMoney;
+        _cleanDish.CleanDishAfterRecipe();
+        _audioController.WrongRecipeSound();
 
-        ingredientsOnPlate.Clear();
+        IngredientsOnPlate.Clear();
     }
 }
 

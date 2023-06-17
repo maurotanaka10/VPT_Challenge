@@ -6,46 +6,41 @@ using TMPro;
 
 public class RecipeImages : MonoBehaviour
 {
-    public AllBurger allBurger;
-    private RecipeImages _recipeImage;
-    [SerializeField] private BurgerValidate burgerValidate;
-    [SerializeField] private TMP_Text recipeNameTxt;
+    [SerializeField] private AllBurger _allBurger;
+    [SerializeField] private BurgerValidate _burgerValidate;
+    [SerializeField] private TMP_Text _recipeNameTxt;
 
 
-    public Image[] ingredientRecipe;
-    public Sprite spriteMeat, spriteBreadUp, spriteBreadDown, spriteTomato, spriteOnion, spritePickles, spriteCheese, spriteLettuce;
+    [SerializeField] private Image[] _ingredientRecipe;
+    [SerializeField] private Sprite _spriteMeat, _spriteBreadUp, _spriteBreadDown, _spriteTomato, _spriteOnion, _spritePickles, _spriteCheese, _spriteLettuce;
 
-    private Dictionary<Ingredients, Sprite> ingredientSprites = new Dictionary<Ingredients, Sprite>();
+    private Dictionary<Ingredients, Sprite> _ingredientSprites = new Dictionary<Ingredients, Sprite>();
 
-    public void Initialize(RecipeImages recipeImages)
-    {
-        _recipeImage = recipeImages;
-    }
 
     private void Start()
     {
-        ingredientSprites.Add(Ingredients.Meat, spriteMeat);
-        ingredientSprites.Add(Ingredients.BreadDown, spriteBreadDown);
-        ingredientSprites.Add(Ingredients.BreadTop, spriteBreadUp);
-        ingredientSprites.Add(Ingredients.Tomato, spriteTomato);
-        ingredientSprites.Add(Ingredients.Onion, spriteOnion);
-        ingredientSprites.Add(Ingredients.Salad, spriteLettuce);
-        ingredientSprites.Add(Ingredients.Pickles, spritePickles);
-        ingredientSprites.Add(Ingredients.Cheese, spriteCheese);
+        _ingredientSprites.Add(Ingredients.Meat, _spriteMeat);
+        _ingredientSprites.Add(Ingredients.BreadDown, _spriteBreadDown);
+        _ingredientSprites.Add(Ingredients.BreadTop, _spriteBreadUp);
+        _ingredientSprites.Add(Ingredients.Tomato, _spriteTomato);
+        _ingredientSprites.Add(Ingredients.Onion, _spriteOnion);
+        _ingredientSprites.Add(Ingredients.Salad, _spriteLettuce);
+        _ingredientSprites.Add(Ingredients.Pickles, _spritePickles);
+        _ingredientSprites.Add(Ingredients.Cheese, _spriteCheese);
     }
 
     public void UpdateIngredientImage()
     {
-        Ingredients[] ingredients = burgerValidate.burgerSelected.GetBurgerIngredients();
-        recipeNameTxt.text = burgerValidate.burgerSelected.GetBurgerName().ToString();
+        Ingredients[] ingredients = _burgerValidate.BurgerSelected.GetBurgerIngredients();
+        _recipeNameTxt.text = _burgerValidate.BurgerSelected.GetBurgerName().ToString();
 
         if(ingredients.Length > 0)
         {
-            ingredientRecipe[0].sprite = ingredientSprites[ingredients[0]];
-            ingredientRecipe[1].sprite = ingredientSprites[ingredients[1]];
-            ingredientRecipe[2].sprite = ingredientSprites[ingredients[2]];
-            ingredientRecipe[3].sprite = ingredientSprites[ingredients[3]];
-            ingredientRecipe[4].sprite = ingredientSprites[ingredients[4]];
+            _ingredientRecipe[0].sprite = _ingredientSprites[ingredients[0]];
+            _ingredientRecipe[1].sprite = _ingredientSprites[ingredients[1]];
+            _ingredientRecipe[2].sprite = _ingredientSprites[ingredients[2]];
+            _ingredientRecipe[3].sprite = _ingredientSprites[ingredients[3]];
+            _ingredientRecipe[4].sprite = _ingredientSprites[ingredients[4]];
         }
     }
 }

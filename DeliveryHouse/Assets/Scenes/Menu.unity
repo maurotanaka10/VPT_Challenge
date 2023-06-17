@@ -1253,7 +1253,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2129468031}
         m_TargetAssemblyTypeName: ButtonBehavior, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: StartCutscene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
