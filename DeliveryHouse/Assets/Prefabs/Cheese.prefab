@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 443319663802285443}
   - component: {fileID: -7489575905406527675}
   - component: {fileID: -1393519252887282444}
+  - component: {fileID: -25762185099720795}
   m_Layer: 6
   m_Name: Cheese
   m_TagString: Cheese
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1490658243293932986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.019834846, z: -0.03649}
-  m_LocalScale: {x: 8.9362545, y: 0.38420564, z: 8.9362545}
+  m_LocalScale: {x: 7.818106, y: 0.33613196, z: 7.818106}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,3 +116,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 381536342540105377, guid: 6810374824a90ec4a812270caef00981, type: 3}
+--- !u!114 &-25762185099720795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490658243293932986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21cfba67a5dbb9448270a817cd2d577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

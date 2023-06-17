@@ -7,6 +7,7 @@ public class PlayerInteractController : MonoBehaviour
 {
     private PlayerInputSystem playerInputSystem;
     [SerializeField]private BurgerValidate burgerValidate;
+    public CleanDish cleanDish;
 
     private bool mouseClicked;
     [SerializeField] private GameObject objHolding;
@@ -36,6 +37,13 @@ public class PlayerInteractController : MonoBehaviour
             {
                 if (!isHolding)
                 {
+                    if (hit.collider.gameObject.tag == "Button")
+                    {
+                        burgerValidate.ingredientsOnPlate.Clear();
+                        cleanDish.CleanDishAfterRecipe();
+                        return;
+                    }
+
                     if (hit.collider.gameObject.tag == ("Dish"))
                     {
                         return;
@@ -43,7 +51,7 @@ public class PlayerInteractController : MonoBehaviour
 
                     isHolding = true;
                     objHolding = hit.transform.gameObject;
-
+                    cleanDish.AddItensToDestroy(objHolding);
                     if (objHolding.GetComponent<Rigidbody>())
                     {
                         objHolding.GetComponent<Rigidbody>().isKinematic = true;
@@ -61,8 +69,6 @@ public class PlayerInteractController : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == ("Dish"))
                 {
-                    burgerValidate.AddIngredientsToPlate(objHolding);
-
                     objAim = hit.transform.gameObject;
                     Vector3 offset = new Vector3(0, 0.08f, 0);
                     if (isHolding)
@@ -71,8 +77,12 @@ public class PlayerInteractController : MonoBehaviour
                         objHolding.transform.position = objAim.transform.position + offset;
                         objHolding.transform.rotation = objAim.transform.rotation;
                         objHolding.transform.SetParent(objAim.transform);
+
+                        burgerValidate.AddIngredientsToPlate(objHolding);
                     }
                 }
+
+                objHolding.transform.parent = null;
                 objHolding.GetComponent<Rigidbody>().isKinematic = false;
                 objHolding = null;
                 isHolding = false;

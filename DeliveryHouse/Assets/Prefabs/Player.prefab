@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3276141424989288745}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a138e4439452ad74bae66756422d5e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   playerVelocity: 1
 --- !u!143 &3276141424989288744
 CharacterController:
@@ -114,7 +115,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.17
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -132,9 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0670b02cd9580664da95e3febc883104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burgerValidate: {fileID: 0}
+  cleanDish: {fileID: 0}
   objHolding: {fileID: 0}
   objAim: {fileID: 0}
-  maxDistanceRay: 0.7
+  maxDistanceRay: 0.8
+  handTransform: {fileID: 3276141425652095161}
 --- !u!1 &3276141425652095160
 GameObject:
   m_ObjectHideFlags: 0

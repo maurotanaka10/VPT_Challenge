@@ -8,6 +8,7 @@ public class PlayerMovementController : MonoBehaviour
 {
     private PlayerInputSystem playerInputSystem;
     private CharacterController characterController;
+    public GameManager gameManager;
 
     private Vector2 playerMovementInput;
     private Vector3 playerMovementStrafe;
@@ -27,7 +28,10 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SetMovement();
+        if (gameManager.gameIsRunning)
+        {
+            SetMovement();
+        }
     }
 
     private void SetMovement()

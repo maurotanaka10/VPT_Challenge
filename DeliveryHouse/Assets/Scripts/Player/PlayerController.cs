@@ -7,14 +7,12 @@ public class PlayerController : MonoBehaviour
     private PlayerMovementController playerMovementController;
     private CameraController cameraController;
     private PlayerInputSystem playerInputSystem;
-    private ActionPlayerController actionPlayerController;
 
     private void Awake()
     {
         playerMovementController = GetComponent<PlayerMovementController>();
         cameraController = GetComponent<CameraController>();
         playerInputSystem = new PlayerInputSystem();
-        actionPlayerController = GetComponent<ActionPlayerController>();
     }
 
     private void Update()

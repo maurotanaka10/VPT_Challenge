@@ -6,18 +6,19 @@ public class BurgerValidate : MonoBehaviour
 {
     public AllBurger allBurger;
     public UIManager uIManager;
+    public AudioController audioController;
+    public CleanDish cleanDish;
     [SerializeField] private RecipeImages recipeImages;
+
+    [SerializeField] private float lostMoney;
 
     public BurgerScriptableObject burgerSelected;
 
-    private List<GameObject> ingredientsOnPlate = new List<GameObject>();
+    public List<GameObject> ingredientsOnPlate = new List<GameObject>();
 
     private void Awake()
     {
-
-        RandomizeBurger();
-        Debug.Log(burgerSelected.GetBurgerName());
-        Debug.Log(burgerSelected.ingredient01 + "" + burgerSelected.ingredient02 + "" + burgerSelected.ingredient03 + "" + burgerSelected.ingredient04 + "" + burgerSelected.ingredient05);
+        
     }
 
     public void RandomizeBurger()
@@ -33,7 +34,7 @@ public class BurgerValidate : MonoBehaviour
 
     private void CheckBurgerCompletion()
     {
-        if(ingredientsOnPlate.Count == burgerSelected.GetBurgerIngredients().Length)
+        if (ingredientsOnPlate.Count == burgerSelected.GetBurgerIngredients().Length)
         {
             bool isComplete = true;
 
@@ -69,19 +70,18 @@ public class BurgerValidate : MonoBehaviour
         return false;
     }
 
-    private void FirstRequest()
+    public void FirstRequest()
     {
         RandomizeBurger();
+        recipeImages.UpdateIngredientImage();
     }
 
     private void ConclusionRequest()
     {
         uIManager.money += burgerSelected.payment;
-
-        foreach (GameObject ingredients in ingredientsOnPlate)
-        {
-            Destroy(ingredients);
-        }
+        ingredientsOnPlate.Clear();
+        cleanDish.CleanDishAfterRecipe();
+        audioController.CorrectRecipeSound();
 
         RandomizeBurger();
         recipeImages.UpdateIngredientImage();
@@ -89,10 +89,11 @@ public class BurgerValidate : MonoBehaviour
 
     private void WrongRequest()
     {
-        foreach (GameObject ingredients in ingredientsOnPlate)
-        {
-            Destroy(ingredients);
-        }
+        uIManager.money -= lostMoney;
+        cleanDish.CleanDishAfterRecipe();
+        audioController.WrongRecipeSound();
+
+        ingredientsOnPlate.Clear();
     }
 }
 

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RecipeImages : MonoBehaviour
 {
     public AllBurger allBurger;
     private RecipeImages _recipeImage;
     [SerializeField] private BurgerValidate burgerValidate;
+    [SerializeField] private TMP_Text recipeNameTxt;
 
 
     public Image[] ingredientRecipe;
@@ -30,13 +32,12 @@ public class RecipeImages : MonoBehaviour
         ingredientSprites.Add(Ingredients.Salad, spriteLettuce);
         ingredientSprites.Add(Ingredients.Pickles, spritePickles);
         ingredientSprites.Add(Ingredients.Cheese, spriteCheese);
-
-        UpdateIngredientImage();
     }
 
     public void UpdateIngredientImage()
     {
         Ingredients[] ingredients = burgerValidate.burgerSelected.GetBurgerIngredients();
+        recipeNameTxt.text = burgerValidate.burgerSelected.GetBurgerName().ToString();
 
         if(ingredients.Length > 0)
         {

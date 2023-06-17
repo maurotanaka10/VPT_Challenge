@@ -5,14 +5,19 @@ using TMPro;
 
 public class TimerBehavior : MonoBehaviour
 {
+    public GameManager gameManager;
+
     [SerializeField] private TMP_Text timerText;
-    [SerializeField] private float timer;
+    [SerializeField] private TMP_Text startGameTxt;
+    [SerializeField] private GameObject startGameTxt2;
+    [SerializeField] private float initialTimer;
+    [SerializeField] private float gameTimer;
+    private float timer;
     private bool timerIsRunning = false;
     private float currentTime;
 
     private void Awake()
     {
-        ResetTimer();
         StartTimer();
     }
 
@@ -22,32 +27,59 @@ public class TimerBehavior : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
 
-            if (currentTime <= 0f)
-            {
-                currentTime = 0f;
-                StopTimer();
-            }
-
             string minutes = ((int)currentTime / 60).ToString("00");
             string seconds = (currentTime % 60).ToString("00");
             string timeText = minutes + ":" + seconds;
-            timerText.text = timeText;
+
+            if (gameManager.gameIsRunning)
+            {
+                timerText.text = timeText;
+
+                if (currentTime <= 0f)
+                {
+                    currentTime = 0f;
+                    StopTimer();
+                    gameManager.gameIsOver = true;
+                    gameManager.gameIsRunning = false;
+                }
+            }
+            else
+            {
+                startGameTxt.text = timeText;
+
+                if(currentTime <= 0)
+                {
+                    gameManager.StartGame();
+                    ResetTimer();
+                    startGameTxt2.SetActive(false);
+                    gameManager.gameIsRunning = true;
+                }
+            }
         }
     }
 
     public void StartTimer()
     {
         timerIsRunning = true;
+        StartGameTimer();
     }
 
-    public void StopTimer()
+    private void StopTimer()
     {
         timerIsRunning = false;
     }
 
-    public void ResetTimer()
+    private void ResetTimer()
     {
+        timer = gameTimer;
         currentTime = timer;
         timerText.text = timer.ToString("0");
+    }
+
+    private void StartGameTimer()
+    {
+        timer = initialTimer;
+        currentTime = timer;
+        startGameTxt.text = timer.ToString("0");
     }
 }
